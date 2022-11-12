@@ -1,0 +1,13 @@
+from tensorflow.keras.preprocessing.image import ImageDataGenerator 
+train_datagen=ImageDataGenerator(rescale=1./255,shear_range=0.2,rotation_range=180,z oom_range=0.2,horizontal_flip=True) 
+test_datagen=ImageDataGenerator(rescale=1./255) 
+x_train=train_datagen.flow_from_directory(r'C:\Users\USER\Documents\Sem7\Naalaiyathir an\Dataset\Dataset\train_set', target_size=(128,128), 
+batch_size=32, class_mode='bi nary') 
+x_test=train_datagen.flow_from_directory(r'C:\Users\USER\Documents\Sem7\Naalaiyathira n\Dataset\Dataset\test_set', target_size=(128,128), 
+batch_size=32, class_mode='bi nary') 
+x_train.class_indices 
+from tensorflow.keras.models import Sequentialfrom tensorflow.keras.layers import Dense 
+from tensorflow.keras.layers import Convolution2D,MaxPooling2D, Flattenimport warnings warnings.filterwarnings('ignore') 
+model=Sequential() 
+model.add(MaxPooling2D(pool_size=(2,2))) model.add(Flatten()) model.summary() 
+
