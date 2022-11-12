@@ -1,0 +1,23 @@
+import cv2 import numpy as np from keras.preprocessing import imagefrom keras.models import load_model from twilio.rest import 
+Client 
+!pip install twilio model=load_model('forestfire. 
+h5') video=cv2.VideoCapture(r'C:\Users\win\Desktop\Project_NT\video.mp 
+4') name=['forest','with fire'] #predict=model.predi ct(x)import keras from tensorflow.keras.utils import load_img, img_to_arraywhile(1): 
+success,frame=video.read() cv2.imwrite("image.jpg",frame) img=keras.utils.load_img("image.jpg") img= cv2.resize(frame, (128,128)) x=keras.utils.img_to_array(img) x=np.expand_dims(x,axis=0) dim=(128,128) 
+# x=x.reshape(128, 
+128, 3) # x= 
+cv2.resize(x, (128,128)) 
+pred = model.predict(x) 
+ 
+#pred=model.predict_class es(x)p=pred[0] print(pred) 
+# cv2.putText(frame,"predicted class="+str(name[p]),(100,100),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,0),1) if pred[0]==1: 
+account_sid='AC63518ea0e5f8e919ee2a4dc4dc17cdb6' auth_token='e5413a0fd6c65647ca88e8cb0cd33fac' 
+client=Client(account_sid,auth_token) 
+ 
+message=client.messages.create(body='Forest Fire is detected,stay alert',from_='+1 989 762 1639', to='+91 9344394743') print(message.si d) print('Fire Detected') print('SMS sent!') 
+else: 
+print("No Danger") 
+cv2.imshow("image",fra me) 
+#if cv2.waitkey(1) & 0xFF== ord('a'):#break 
+video.release() cv2.destroyAllWindows() 
+
